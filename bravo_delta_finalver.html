@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bravo Delta Advisory | Strategy - Transformation - Advisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb; /* gray-200 */
+        }
+        .hero-bg {
+            /* Using a relative path to the local high-res image file */
+            background-image: linear-gradient(rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0.85)), url('images/banner.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .accent-gold {
+            color: #facc15; /* yellow-400 */
+        }
+        .bg-accent-gold {
+            background-color: #facc15;
+        }
+        .border-accent-gold {
+            border-color: #facc15;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #facc15;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #facc15;
+            transform: translateY(-1px);
+        }
+        .headshot-img {
+            object-position: center 15%; /* This pulls the image down to center the head */
+        }
+        
+        /* Enhanced smooth scrolling and transitions */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Account for fixed header */
+        }
+        
+        /* Optimize for smooth scrolling performance */
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Additional scroll performance optimization */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Reduce repaints during scroll */
+        .service-card, .blog-card, .hero-button, .contact-button {
+            will-change: transform;
+        }
+        
+        /* Constrain logo link to image size only */
+        .footer-logo-link {
+            display: inline-block;
+            width: fit-content;
+        }
+        
+        /* Improved hover effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.15);
+        }
+        
+        .blog-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-button {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250, 204, 21, 0.3);
+        }
+        
+        .hero-button {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hero-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(250, 204, 21, 0.4);
+        }
+        
+        /* Form input improvements */
+        .form-input {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.2);
+        }
+        
+        /* Footer link hover effects */
+        .footer-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .footer-link:hover {
+            transform: translateX(4px);
+        }
+        
+        /* Header background transition */
+        .header-bg {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header-bg bg-black bg-opacity-80 backdrop-blur-sm sticky top-0 z-50">
+        <!-- Increased vertical padding for a larger nav bar -->
+        <div class="container mx-auto px-6 py-5">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="flex items-center space-x-3 transition-all duration-300 hover:scale-105">
+                    <!-- Using new secondary logo from local folder -->
+                    <img src="images/logo-secondary.png" alt="Bravo Delta Logo" class="h-12">
+                </a>
+                <nav class="hidden md:flex items-center space-x-8 text-lg">
+                    <a href="#home" class="nav-link text-gray-300">Home</a>
+                    <a href="#about" class="nav-link text-gray-300">About</a>
+                    <a href="#services" class="nav-link text-gray-300">Services</a>
+                    <a href="#blog" class="nav-link text-gray-300">Insights</a>
+                    <a href="#contact" class="contact-button bg-accent-gold text-black font-semibold py-2 px-5 rounded-md hover:bg-yellow-300">Contact Us</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none transition-all duration-300 hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 transition-all duration-300">
+            <a href="#home" class="block py-3 px-6 text-gray-300 hover:accent-gold border-b border-gray-800 transition-all duration-300">Home</a>
+            <a href="#about" class="block py-3 px-6 text-gray-300 hover:accent-gold border-b border-gray-800 transition-all duration-300">About</a>
+            <a href="#services" class="block py-3 px-6 text-gray-300 hover:accent-gold border-b border-gray-800 transition-all duration-300">Services</a>
+            <a href="#blog" class="block py-3 px-6 text-gray-300 hover:accent-gold border-b border-gray-800 transition-all duration-300">Insights</a>
+            <a href="#contact" class="block py-3 px-6 text-gray-300 hover:accent-gold transition-all duration-300">Contact Us</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Redesigned Hero Section -->
+        <section id="home" class="hero-bg min-h-screen flex items-center">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                    <!-- Left Column: Logo -->
+                    <div class="w-full md:w-2/5 flex justify-center md:justify-end">
+                        <img src="images/logo-main.png" alt="Bravo Delta Main Logo" class="h-64 md:h-80 transition-all duration-500 hover:scale-105">
+                    </div>
+                    <!-- Right Column: Text Content -->
+                    <div class="w-full md:w-3/5 text-center md:text-left">
+                        <!-- Reduced heading size -->
+                        <h1 class="text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
+                            Delivering Strategic Advantage in Complex Environments
+                        </h1>
+                        <p class="text-lg lg:text-xl text-gray-300 mb-8">
+                            Leveraging 23 years of leadership experience to provide elite advisory and transformation services for Government, Defence, and the corporate sector.
+                        </p>
+                        <a href="#contact" class="hero-button bg-accent-gold text-black font-bold py-3 px-8 rounded-lg hover:bg-yellow-300 text-lg inline-block">
+                            Start the Conversation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-24 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">About Bravo Delta</h2>
+                    <div class="w-24 h-1 bg-accent-gold mx-auto mt-4"></div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    <div class="md:w-1/3 text-center">
+                        <img src="images/headshot.png" alt="Ben Dullroy, Founder" class="headshot-img rounded-full shadow-2xl w-64 h-64 mx-auto object-cover border-4 border-gray-700 transition-all duration-500 hover:border-accent-gold hover:scale-105">
+                        <h3 class="text-2xl font-semibold text-white mt-6">Ben Dullroy</h3>
+                        <p class="accent-gold font-medium">Principal Consultant</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h4 class="text-2xl font-semibold text-white mb-4">A Leader Forged by Experience.</h4>
+                        <p class="text-gray-300 mb-4">
+                            With over 23 years of experience in business performance improvement, operational management, and strategic planning, Ben Dullroy brings a wealth of expertise to every engagement.
+                        </p>
+                        <p class="text-gray-300 mb-4">
+                            Ben has a proven track record in complex organisations, managing multiple stakeholders in extreme environments. From Brisbane to Baghdad, his focus remains constant: delivery.
+                        </p>
+                        <p class="text-gray-300">
+                            He thrives in big-picture, strategic roles, always seeking to contribute to the contest of ideas and drive his chosen profession forward.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-24 bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Mission</h2>
+                <div class="w-24 h-1 bg-accent-gold mx-auto mt-4 mb-8"></div>
+                <p class="text-xl md:text-2xl text-gray-300 italic max-w-4xl mx-auto">
+                    "To provide elite strategic advisory and transformation services, leveraging decades of leadership experience to deliver decisive outcomes for Government, Defence, and the corporate sector."
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Our Services</h2>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">We provide bespoke advice and delivery across a range of specialities.</p>
+                    <div class="w-24 h-1 bg-accent-gold mx-auto mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Strategic Planning & Design</h3>
+                        <p class="text-gray-400">Crafting robust, actionable strategies that align with your long-term vision and operational realities.</p>
+                    </div>
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Business Transformation</h3>
+                        <p class="text-gray-400">Guiding organizations through complex changes to improve performance and achieve sustainable growth.</p>
+                    </div>
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Program & Project Management</h3>
+                        <p class="text-gray-400">Ensuring on-time, on-budget delivery of complex projects with a focus on clear communication and risk mitigation.</p>
+                    </div>
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Cost Optimisation</h3>
+                        <p class="text-gray-400">Assisting businesses in identifying options to reduce and optimise operating costs to improve the bottom line and / or free up resources for reinvestment.</p>
+                    </div>
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Board Advisory</h3>
+                        <p class="text-gray-400">Offering independent, high-level advice to boards and executive teams on matters of strategy and governance.</p>
+                    </div>
+                    <div class="service-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-gold shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Insights & Analysis</h3>
+                        <p class="text-gray-400">We analyse the complex to bring clarity for our clients. We leverage techniques including horizon scanning, futures analysis and historical analysis to inform and enhance decision making.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updated Blog/Insights Section with corrected links and content -->
+        <section id="blog" class="py-24 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Strategic Insights</h2>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">Pontificating on strategy, leadership, and the contest of ideas.</p>
+                    <div class="w-24 h-1 bg-accent-gold mx-auto mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <div class="blog-card bg-gray-900 rounded-lg overflow-hidden group flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <p class="text-sm text-gray-500 mb-2">STRATEGY • JUNE 2025</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 group-hover:accent-gold transition-colors duration-400">A New Arsenal of Democracy</h3>
+                            <p class="text-gray-400 mb-4">To counter the Arc of Autocracy, the US needs to leverage Allies and partners. For Australia, this could be an opportunity to provide more than just base access in the Indo Pacific...</p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://www.linkedin.com/posts/bravo-delta_to-counter-the-arc-of-autocracy-the-us-needs-activity-7331830767649538048-0zzk" target="_blank" class="font-semibold accent-gold transition-all duration-300 hover:underline">Read on LinkedIn &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Post 2 -->
+                    <div class="blog-card bg-gray-900 rounded-lg overflow-hidden group flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <p class="text-sm text-gray-500 mb-2">ADVISORY • MARCH 2025</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 group-hover:accent-gold transition-colors duration-400">Why is the West so slow to adjust?</h3>
+                            <p class="text-gray-400 mb-4">By Western metrics this should be a cakewalk - the US and Europe's GDP dwarfs that of Russia. But yet three years on Russia has been able to maintain and grow its advantage...</p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://www.linkedin.com/posts/bravo-delta_why-is-the-west-so-slow-to-adjust-to-a-return-activity-7304429894640312320-fqO6" target="_blank" class="font-semibold accent-gold transition-all duration-300 hover:underline">Read on LinkedIn &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Post 3 -->
+                    <div class="blog-card bg-gray-900 rounded-lg overflow-hidden group flex flex-col">
+                         <div class="p-6 flex-grow">
+                            <p class="text-sm text-gray-500 mb-2">ENERGY SECURITY • MAY 2025</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 group-hover:accent-gold transition-colors duration-400">The New Joule Order</h3>
+                            <p class="text-gray-400 mb-4">A nation that cannot assure its domestic energy supply is vulnerable. The West is not the world and the world outside the West is acting in a very different way on energy...</p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://www.linkedin.com/posts/bravo-delta_a-nation-that-cannot-assure-its-domestic-activity-7317304313419051008-wzCT" target="_blank" class="font-semibold accent-gold transition-all duration-300 hover:underline">Read on LinkedIn &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Start the Conversation</h2>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">Ready to discuss your strategic challenges? Let's connect.</p>
+                    <div class="w-24 h-1 bg-accent-gold mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-2xl mx-auto bg-gray-800 p-8 rounded-lg shadow-2xl">
+                    <form id="contactForm" action="https://formspree.io/f/xyzplpov" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-input w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-input w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-gold" placeholder="Tell us about your objectives..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="contact-button bg-accent-gold text-black font-bold py-3 px-12 rounded-lg hover:bg-yellow-300 w-full md:w-auto">Send Inquiry</button>
+                        </div>
+                    </form>
+                    <div id="form-feedback" class="text-center mt-6"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-400">
+                <!-- Column 1: Brand & Location -->
+                <div class="md:col-span-2">
+                    <a href="#home" class="footer-logo-link transition-all duration-300 hover:scale-105">
+                        <!-- Using new secondary logo from local folder -->
+                        <img src="images/logo-secondary.png" alt="Bravo Delta Logo" class="h-12">
+                    </a>
+                    <p class="mb-2 mt-4">Strategy | Transformation | Advisory</p>
+                    <p class="font-semibold text-gray-300">Headquarters</p>
+                    <p>Sunshine Coast, QLD, Australia</p>
+                </div>
+                
+                <!-- Column 2: Navigation -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Navigate</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#about" class="footer-link hover:accent-gold">About Us</a></li>
+                        <li class="mb-2"><a href="#services" class="footer-link hover:accent-gold">Services</a></li>
+                        <li class="mb-2"><a href="#blog" class="footer-link hover:accent-gold">Insights</a></li>
+                        <li class="mb-2"><a href="#contact" class="footer-link hover:accent-gold">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Connect -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <p class="mb-4">info@bravodelta.com.au</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/bendullroy/" target="_blank" class="text-gray-400 hover:accent-gold transition-all duration-300 hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-6 text-center text-sm">
+                <p>&copy; <span id="year"></span> Bravo Delta Advisory. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle with smooth animation
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Simple, instant, smooth scrolling - no delays
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Immediate smooth scroll - no custom animation delays
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                }
+            });
+        });
+
+        // Header background opacity on scroll with throttling for better performance
+        let ticking = false;
+        function updateHeader() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-opacity-95');
+                header.classList.remove('bg-opacity-80');
+            } else {
+                header.classList.add('bg-opacity-80');
+                header.classList.remove('bg-opacity-95');
+            }
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        });
+        
+        // Handle contact form submission for Formspree
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('form-feedback');
+        
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formFeedback.textContent = "Thank you for your inquiry. We will be in touch shortly.";
+                    formFeedback.className = 'text-green-400 text-center mt-6';
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formFeedback.textContent = "There was an error sending your message. Please try again.";
+                formFeedback.className = 'text-red-400 text-center mt-6';
+            }
+            
+            // Reset button state
+            submitButton.textContent = 'Send Inquiry';
+            submitButton.disabled = false;
+            
+            // Clear feedback after 5 seconds
+            setTimeout(() => {
+                formFeedback.textContent = "";
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
